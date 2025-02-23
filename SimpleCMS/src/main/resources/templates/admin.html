@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head><title>Admin Panel</title></head>
+<body>
+    <h2>Submit New Content</h2>
+    <form action="/admin/submit" method="post">
+        <textarea name="contentText"></textarea>
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2>Pending Approval</h2>
+    <ul>
+        <li th:each="item : ${pendingContent}">
+            <span th:text="${item.content}"></span>
+            <form action="/admin/approve/{id}" method="post">
+                <input type="hidden" name="id" th:value="${item.id}" />
+                <button type="submit">Approve</button>
+            </form>
+        </li>
+    </ul>
+</body>
+</html>
